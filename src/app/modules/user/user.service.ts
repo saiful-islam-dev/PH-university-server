@@ -125,8 +125,10 @@ const createFacultyIntoDB = async (
     throw new AppError(400, 'Academic department not found');
   }
 
-  const session = await mongoose.startSession();
+  payload.academicFaculty = academicDepartment?.academicFaculty;
 
+  console.log('academicFaculty', payload);
+  const session = await mongoose.startSession();
   try {
     session.startTransaction();
     //set  generated id
@@ -153,7 +155,7 @@ const createFacultyIntoDB = async (
     // create a faculty (transaction-2)
 
     const newFaculty = await Faculty.create([payload], { session });
-
+    console.log(newFaculty);
     if (!newFaculty.length) {
       throw new AppError(httpStatus.BAD_REQUEST, 'Failed to create faculty');
     }
