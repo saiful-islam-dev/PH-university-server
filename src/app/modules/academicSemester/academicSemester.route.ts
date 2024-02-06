@@ -28,10 +28,8 @@ router.get(
 );
 
 router.patch(
-  '/:courseId',auth(
-    USER_ROLE.superAdmin,
-    USER_ROLE.admin,
-  ),
+  '/:courseId',
+  auth(USER_ROLE.superAdmin, USER_ROLE.admin),
   validateRequest(
     AcademicSemesterValidations.updateAcademicSemesterValidationSchema,
   ),

@@ -127,7 +127,6 @@ const createFacultyIntoDB = async (
 
   payload.academicFaculty = academicDepartment?.academicFaculty;
 
-  console.log('academicFaculty', payload);
   const session = await mongoose.startSession();
   try {
     session.startTransaction();
@@ -155,7 +154,6 @@ const createFacultyIntoDB = async (
     // create a faculty (transaction-2)
 
     const newFaculty = await Faculty.create([payload], { session });
-    console.log(newFaculty);
     if (!newFaculty.length) {
       throw new AppError(httpStatus.BAD_REQUEST, 'Failed to create faculty');
     }
